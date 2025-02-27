@@ -4,12 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using CollectionsAnalysis;
 
-namespace CollectionsDemo
+namespace CollectionsAnalysis
 {
     class Program
     {
-        public static int HOW_MANY_NUMS = (int)Math.Pow(10, 6);
-
         public static List<int> ArrayResults = new List<int>();
         public static List<int> ArrayListResults = new List<int>();
         public static List<int> ListResults = new List<int>();
@@ -19,23 +17,39 @@ namespace CollectionsDemo
         public static float AvgArrayListTime;
         public static float AvgListTime;
         public static float AvgLinkedListTime;
-        
+
+
         public static void Main(string[] args)
         {
             Random rand = new Random(1273);
             RunMultipleTests(100, rand);
         }
 
+        /// <summary>
+        /// Runs a specified number of collections tests.
+        /// </summary>
+        /// <param name="numberOfTests"></param>
+        /// <param name="rand"></param>
         public static void RunMultipleTests(int numberOfTests, Random rand)
         {
             for (int i = 0; i < numberOfTests; i++)
             {
-                ArrayResults.Add(RunCollectionDemo("Array", rand));
-                ArrayListResults.Add(RunCollectionDemo("ArrayList", rand));
-                ListResults.Add(RunCollectionDemo("List", rand));
-                LinkedListResults.Add(RunCollectionDemo("LinkedList", rand));
+                //Add the time results of each demo to a big list.
+                ArrayResults.Add(RunCollectionDemo(Globals.TestType.Array, rand));
+                ArrayListResults.Add(RunCollectionDemo(Globals.TestType.ArrayList, rand));
+                ListResults.Add(RunCollectionDemo(Globals.TestType.List, rand));
+                LinkedListResults.Add(RunCollectionDemo(Globals.TestType.LinkedList, rand));
             }
 
+            CalculateDemoAverages();
+        }
+
+        /// <summary>
+        /// Calculates the average times of each demo, and prints the results to the console.
+        /// </summary>
+        private static void CalculateDemoAverages()
+        {
+            //calculate average time each collection type took
             AvgArrayTime = (float)ArrayResults.Average();
             AvgArrayListTime = (float)ArrayListResults.Average();
             AvgListTime = (float)ListResults.Average();
@@ -46,34 +60,40 @@ namespace CollectionsDemo
             Console.WriteLine($"Avg List Time: {AvgListTime:F2} ms");
             Console.WriteLine($"Avg LinkedList Time: {AvgLinkedListTime:F2} ms");
         }
-        
-        public static int RunCollectionDemo(string demoType, Random rand)
+
+        /// <summary>
+        /// Runs one collections demo with the specifed collections type.
+        /// </summary>
+        /// <param name="demoType"></param>
+        /// <param name="rand"></param>
+        /// <returns></returns>
+        public static int RunCollectionDemo(Globals.TestType demoType, Random rand)
         {
             Stopwatch stopwatch = new Stopwatch();
 
             switch (demoType)
             {
-                case "Array":
+                case Globals.TestType.Array:
                     stopwatch.Restart();
-                    ArrayDemo arrayDemo = new ArrayDemo(HOW_MANY_NUMS, rand);
+                    ArrayDemo arrayDemo = new ArrayDemo(howManyStrings, rand);
                     stopwatch.Stop();
                     return (int)stopwatch.ElapsedMilliseconds;
 
-                case "ArrayList":
+                case Globals.TestType.ArrayList:
                     stopwatch.Restart();
-                    ArrayListDemo arrayListDemo = new ArrayListDemo(HOW_MANY_NUMS, rand);
+                    ArrayListDemo arrayListDemo = new ArrayListDemo(howManyStrings, rand);
                     stopwatch.Stop();
                     return (int)stopwatch.ElapsedMilliseconds;
 
-                case "List":
+                case Globals.TestType.List:
                     stopwatch.Restart();
-                    ListDemo listDemo = new ListDemo(HOW_MANY_NUMS, rand);
+                    ListDemo listDemo = new ListDemo(howManyStrings, rand);
                     stopwatch.Stop();
                     return (int)stopwatch.ElapsedMilliseconds;
 
-                case "LinkedList":
+                case Globals.TestType.LinkedList:
                     stopwatch.Restart();
-                    LinkedListDemo linkedListDemo = new LinkedListDemo(HOW_MANY_NUMS, rand);
+                    LinkedListDemo linkedListDemo = new LinkedListDemo(howManyStrings, rand);
                     stopwatch.Stop();
                     return (int)stopwatch.ElapsedMilliseconds;
 

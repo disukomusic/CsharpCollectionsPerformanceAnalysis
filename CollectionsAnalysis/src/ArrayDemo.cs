@@ -2,20 +2,20 @@
 
 public class ArrayDemo
 {
-    public int[] nums;
+    public string[] words;
 
     public ArrayDemo(int howManyNums, Random rand)
     {
-        nums = new int[howManyNums];
+        words = new string[howManyNums];
         
         for(int i = 0; i < howManyNums; i++) 
         {
-            nums[i] = rand.Next(howManyNums);
+            words[i] = Globals.randomWords[rand.Next(Globals.randomWords.Length)];
         }
 
-        Console.WriteLine("The first few numbers in the Array Demo are: ");
+        Console.WriteLine("The first few words in the Array Demo are: ");
         for(int i = 0; i < 6; i++){
-            Console.WriteLine(nums[i]);
+            Console.WriteLine(words[i]);
         }
         
     }

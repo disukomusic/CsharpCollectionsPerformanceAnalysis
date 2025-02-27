@@ -10,10 +10,10 @@ public class ArrayListDemo
     {
         for(int i = 0; i < howManyNums; i++) 
         {
-            arrayList.Add(rand.Next(howManyNums));
+            arrayList.Add(Globals.randomWords[rand.Next(Globals.randomWords.Length)]);
         }
 
-        Console.WriteLine("The first few numbers in the Array List are: ");
+        Console.WriteLine("The first few words in the Array List are: ");
         for(int i = 0; i < 6; i++){
             Console.WriteLine(arrayList[i]);
         }
