@@ -79,10 +79,15 @@ namespace CollectionsAnalysis
             AvgListTime = (float)ListResults.Average();
             AvgLinkedListTime = (float)LinkedListResults.Average();
             
+            Console.WriteLine($"--------------");
+            Console.WriteLine($"Ran {numberOfTests} tests with {howManyStrings} strings each.");
+            Console.WriteLine($"-----Results-----");
             Console.WriteLine($"Avg Array Time: {AvgArrayTime:F2} ms");
             Console.WriteLine($"Avg ArrayList Time: {AvgArrayListTime:F2} ms");
             Console.WriteLine($"Avg List Time: {AvgListTime:F2} ms");
-            Console.WriteLine($"Avg LinkedList Time: {AvgLinkedListTime:F2} ms");
+            Console.WriteLine($"Avg LinkedList Time: {AvgLinkedListTime:F2} ms");       
+            Console.WriteLine($"--------------");
+
         }
 
         /// <summary>
