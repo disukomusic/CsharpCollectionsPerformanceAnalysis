@@ -8,6 +8,9 @@ namespace CollectionsAnalysis
 {
     class Program
     {
+        public static int howManyStrings = 1_000_000; // Default value
+        public static int numberOfTests = 10; // Default value
+        
         public static List<int> ArrayResults = new List<int>();
         public static List<int> ArrayListResults = new List<int>();
         public static List<int> ListResults = new List<int>();
@@ -21,8 +24,29 @@ namespace CollectionsAnalysis
 
         public static void Main(string[] args)
         {
-            Random rand = new Random(1273);
-            RunMultipleTests(100, rand);
+            ParseArguments(args);
+
+            Random rand = new Random(420);
+            RunMultipleTests(numberOfTests, rand);
+        }
+
+        /// <summary>
+        /// Parses command-line arguments for test settings.
+        /// </summary>
+        /// <param name="args"></param>
+        private static void ParseArguments(string[] args)
+        {
+            if (args.Length >= 1 && int.TryParse(args[0], out int tests))
+            {
+                numberOfTests = Math.Max(1, tests); // Ensure at least 1 test
+            }
+
+            if (args.Length >= 2 && int.TryParse(args[1], out int strings))
+            {
+                howManyStrings = Math.Max(1, strings); // Ensure at least 1 string
+            }
+
+            Console.WriteLine($"Running {numberOfTests} tests with {howManyStrings} strings each.");
         }
 
         /// <summary>
