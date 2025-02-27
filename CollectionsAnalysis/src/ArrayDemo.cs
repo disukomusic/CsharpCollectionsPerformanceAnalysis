@@ -14,9 +14,10 @@ public class ArrayDemo
         }
 
         Console.WriteLine("The first few words in the Array Demo are: ");
-        for(int i = 0; i < 6; i++){
+        int maxWordsToDisplay = Math.Min(6, words.Length); //Make sure we don't print more words than are in the list
+        for (int i = 0; i < maxWordsToDisplay; i++) 
+        {
             Console.WriteLine(words[i]);
         }
-        
     }
 }
