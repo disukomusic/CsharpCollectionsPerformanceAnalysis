@@ -12,12 +12,12 @@ namespace CollectionsAnalysis
     class Program
     {
         public static int howManyStrings = 1000000;
-        public static int numberOfTests = 10;
+        public static int numberOfTests = 2;
 
-        public static List<int> ArrayResults = new List<int>();
-        public static List<int> ArrayListResults = new List<int>();
-        public static List<int> ListResults = new List<int>();
-        public static List<int> LinkedListResults = new List<int>();
+        public static List<float> ArrayResults = new List<float>();
+        public static List<float> ArrayListResults = new List<float>();
+        public static List<float> ListResults = new List<float>();
+        public static List<float> LinkedListResults = new List<float>();
 
         public static float AvgArrayTime; 
         public static float AvgArrayListTime;
@@ -112,7 +112,7 @@ namespace CollectionsAnalysis
         /// <param name="demoType"></param>
         /// <param name="rand"></param>
         /// <returns></returns>
-        public static int RunCollectionDemo(Globals.TestType demoType, Random rand)
+        public static float RunCollectionDemo(Globals.TestType demoType, Random rand)
         {
             Stopwatch stopwatch = new Stopwatch();
 
@@ -122,25 +122,29 @@ namespace CollectionsAnalysis
                     stopwatch.Restart();
                     ArrayDemo arrayDemo = new ArrayDemo(howManyStrings, rand);
                     stopwatch.Stop();
-                    return (int)stopwatch.ElapsedMilliseconds;
+                    Console.WriteLine($"array time: {stopwatch.ElapsedMilliseconds} ms");
+                    return stopwatch.ElapsedMilliseconds;
 
                 case Globals.TestType.ArrayList:
                     stopwatch.Restart();
                     ArrayListDemo arrayListDemo = new ArrayListDemo(howManyStrings, rand);
                     stopwatch.Stop();
-                    return (int)stopwatch.ElapsedMilliseconds;
+                    Console.WriteLine($"arrayList time: {stopwatch.ElapsedMilliseconds} ms");
+                    return stopwatch.ElapsedMilliseconds;
 
                 case Globals.TestType.List:
                     stopwatch.Restart();
                     ListDemo listDemo = new ListDemo(howManyStrings, rand);
                     stopwatch.Stop();
-                    return (int)stopwatch.ElapsedMilliseconds;
+                    Console.WriteLine($"list time: {stopwatch.ElapsedMilliseconds} ms");
+                    return stopwatch.ElapsedMilliseconds;
 
                 case Globals.TestType.LinkedList:
                     stopwatch.Restart();
                     LinkedListDemo linkedListDemo = new LinkedListDemo(howManyStrings, rand);
                     stopwatch.Stop();
-                    return (int)stopwatch.ElapsedMilliseconds;
+                    Console.WriteLine($"linkedlist time: {stopwatch.ElapsedMilliseconds} ms");
+                    return stopwatch.ElapsedMilliseconds;
 
                 default:
                     return 0;
