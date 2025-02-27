@@ -12,7 +12,7 @@ namespace CollectionsAnalysis
     class Program
     {
         public static int howManyStrings = 1000000;
-        public static int numberOfTests = 2;
+        public static int numberOfTests = 10;
 
         public static List<float> ArrayResults = new List<float>();
         public static List<float> ArrayListResults = new List<float>();
